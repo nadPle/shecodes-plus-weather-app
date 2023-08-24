@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@1,8..144,300&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/2066865cda.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container main-container">
+      <div class="flex">
+        <form id="enter-city-form">
+          <input
+            type="text"
+            placeholder="Enter your city here"
+            id="entered-city"
+            autocomplete="off"
+          />
+          <input type="submit" value="Search" />
+        </form>
+
+        <button id="current-location-button">Use current location</button>
+      </div>
+      <h1>
+        <span class="header-temp-element" id="header-temp-element">27</span
+        ><span id="header-celsius-element">°C</span>
+      </h1>
+
+      <small>
+        <span id="header-humidity-element">Humidity: 51%</span> |
+        <span id="header-wind-element">Wind: 24 km/h</span>
+      </small>
+
+      <h2 id="header-weather-description">Some Clouds</h2>
+
+      <img src="images/sunandsomeclouds.png" alt="mix of sun and clouds" />
+
+      <h3 id="city">Solothurn</h3>
+      <h4 id="entire-current-date">Thursday | Aug 3 | 11:00</h4>
+
+      <div class="container forecast">
+        <div class="row">
+          <div class="col-sm">
+            <div class="forecast-day">Fri</div>
+            <div class="forecast-icon">
+              <i class="fa-solid fa-cloud-showers-heavy"></i>
+            </div>
+            <div class="forecast-temp">
+              <span class="forecast-temp-high">18°</span> |
+              <span class="forecast-temp-low">11°</span>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="forecast-day">Sat</div>
+            <div class="forecast-icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="forecast-temp">
+              <span class="forecast-temp-high">22°</span> |
+              <span class="forecast-temp-low">13°</span>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="forecast-day">Sun</div>
+            <div class="forecast-icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="forecast-temp">
+              <span class="forecast-temp-high">16°</span> |
+              <span class="forecast-temp-low">10°</span>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="forecast-day">Mon</div>
+            <div class="forecast-icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="forecast-temp">
+              <span class="forecast-temp-high">20°</span> |
+              <span class="forecast-temp-low">9°</span>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="forecast-day">Tue</div>
+            <div class="forecast-icon">
+              <i class="fa-solid fa-cloud-sun"></i>
+            </div>
+            <div class="forecast-temp">
+              <span class="forecast-temp-high">24°</span> |
+              <span class="forecast-temp-low">12°</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
