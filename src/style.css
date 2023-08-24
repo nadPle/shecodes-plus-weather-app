@@ -49,23 +49,23 @@ h4 {
 img {
   display: block;
   margin: 0 auto;
-  width: 400px;
+  width: 350px;
 }
 
 .flex {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 40px 40px 80px auto;
+  margin: 40px 20px 80px auto;
   justify-content: flex-end;
 }
 
 .main-container {
-  margin-top: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  max-width: 900px;
+  max-width: 700px;
 }
 
 .forecast {
@@ -80,6 +80,17 @@ img {
 }
 .forecast-temp-high {
   font-weight: bold;
+}
+
+.footnote {
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.open-source-link {
+  text-decoration: none;
+  color: rgb(17, 113, 168);
 }
 
 #current-location-button {
