@@ -55,6 +55,13 @@ function showCityWeatherData(response) {
 
   let shownWeatherDescription = document.querySelector("#weather-description");
   shownWeatherDescription.innerHTML = `${cityWeatherDescription}`;
+
+  let shownIllustration = document.querySelector("#weather-illustration");
+  shownIllustration.setAttribute(
+    "src",
+    `images/${response.data.condition.icon}.png`
+  );
+  console.log(response.data.condition.icon);
 }
 
 function searchCity(event) {
@@ -80,6 +87,7 @@ let enterCityForm = document.querySelector("#enter-city-form");
 enterCityForm.addEventListener("submit", searchCity);
 
 function showPositionWeatherData(response) {
+  console.log(response);
   let positionCityName = response.data.city;
   let positionTemperatureData = Math.round(response.data.temperature.current);
   let positionHumidityData = response.data.temperature.humidity;
@@ -100,6 +108,12 @@ function showPositionWeatherData(response) {
 
   let shownWeatherDescription = document.querySelector("#weather-description");
   shownWeatherDescription.innerHTML = `${positionWeatherDescription}`;
+
+  let shownIllustration = document.querySelector("#weather-illustration");
+  shownIllustration.setAttribute(
+    "src",
+    `images/${response.data.condition.icon}.png`
+  );
 }
 
 function getPositionWeatherData(position) {
