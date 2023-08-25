@@ -38,10 +38,11 @@ function showEntireCurrentDate() {
 showEntireCurrentDate();
 
 function showCityWeatherData(response) {
-  let cityTemperatureData = Math.round(response.data.main.temp);
-  let cityHumidityData = response.data.main.humidity;
+  console.log(response);
+  let cityTemperatureData = Math.round(response.data.temperature.current);
+  let cityHumidityData = response.data.temperature.humidity;
   let cityWindData = response.data.wind.speed;
-  let cityWeatherDescription = response.data.weather[0].description;
+  let cityWeatherDescription = response.data.condition.description;
 
   let shownTemperature = document.querySelector("#temp-element");
   shownTemperature.innerHTML = cityTemperatureData;
@@ -59,9 +60,9 @@ function showCityWeatherData(response) {
 function searchCity(event) {
   event.preventDefault();
   let enteredCity = document.querySelector("#entered-city");
-  let apiKey = "f5e814a04eddfab1740f07bf0328eee2";
+  let apiKey = "491037f95bt62c7eo1c6b568c53adb94";
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${enteredCity.value}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${enteredCity.value}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showCityWeatherData);
 
@@ -79,11 +80,11 @@ let enterCityForm = document.querySelector("#enter-city-form");
 enterCityForm.addEventListener("submit", searchCity);
 
 function showPositionWeatherData(response) {
-  let positionCityName = response.data.name;
-  let positionTemperatureData = Math.round(response.data.main.temp);
-  let positionHumidityData = response.data.main.humidity;
+  let positionCityName = response.data.city;
+  let positionTemperatureData = Math.round(response.data.temperature.current);
+  let positionHumidityData = response.data.temperature.humidity;
   let positionWindData = response.data.wind.speed;
-  let positionWeatherDescription = response.data.weather[0].description;
+  let positionWeatherDescription = response.data.condition.description;
 
   let shownCityName = document.querySelector("#city");
   shownCityName.innerHTML = positionCityName;
@@ -104,9 +105,9 @@ function showPositionWeatherData(response) {
 function getPositionWeatherData(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiKey = "f5e814a04eddfab1740f07bf0328eee2";
+  let apiKey = "491037f95bt62c7eo1c6b568c53adb94";
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showPositionWeatherData);
 }
