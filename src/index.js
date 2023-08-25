@@ -38,7 +38,6 @@ function showEntireCurrentDate() {
 showEntireCurrentDate();
 
 function showCityWeatherData(response) {
-  console.log(response);
   let cityTemperatureData = Math.round(response.data.temperature.current);
   let cityHumidityData = response.data.temperature.humidity;
   let cityWindData = response.data.wind.speed;
@@ -61,7 +60,7 @@ function showCityWeatherData(response) {
     "src",
     `images/${response.data.condition.icon}.png`
   );
-  console.log(response.data.condition.icon);
+  shownIllustration.setAttribute("alt", response.data.condition.description);
 }
 
 function searchCity(event) {
@@ -87,7 +86,6 @@ let enterCityForm = document.querySelector("#enter-city-form");
 enterCityForm.addEventListener("submit", searchCity);
 
 function showPositionWeatherData(response) {
-  console.log(response);
   let positionCityName = response.data.city;
   let positionTemperatureData = Math.round(response.data.temperature.current);
   let positionHumidityData = response.data.temperature.humidity;
@@ -114,6 +112,8 @@ function showPositionWeatherData(response) {
     "src",
     `images/${response.data.condition.icon}.png`
   );
+
+  shownIllustration.setAttribute("alt", response.data.condition.description);
 }
 
 function getPositionWeatherData(position) {
