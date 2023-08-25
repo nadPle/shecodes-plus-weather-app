@@ -43,18 +43,16 @@ function showCityWeatherData(response) {
   let cityWindData = response.data.wind.speed;
   let cityWeatherDescription = response.data.weather[0].description;
 
-  let shownTemperature = document.querySelector("#header-temp-element");
+  let shownTemperature = document.querySelector("#temp-element");
   shownTemperature.innerHTML = cityTemperatureData;
 
-  let shownHumidity = document.querySelector("#header-humidity-element");
+  let shownHumidity = document.querySelector("#humidity-element");
   shownHumidity.innerHTML = `Humidity: ${cityHumidityData} %`;
 
-  let shownWind = document.querySelector("#header-wind-element");
+  let shownWind = document.querySelector("#wind-element");
   shownWind.innerHTML = `Wind: ${Math.round(cityWindData)} km/h`;
 
-  let shownWeatherDescription = document.querySelector(
-    "#header-weather-description"
-  );
+  let shownWeatherDescription = document.querySelector("#weather-description");
   shownWeatherDescription.innerHTML = `${cityWeatherDescription}`;
 }
 
@@ -90,18 +88,16 @@ function showPositionWeatherData(response) {
   let shownCityName = document.querySelector("#city");
   shownCityName.innerHTML = positionCityName;
 
-  let shownTemperature = document.querySelector("#header-temp-element");
+  let shownTemperature = document.querySelector("#temp-element");
   shownTemperature.innerHTML = positionTemperatureData;
 
-  let shownHumidity = document.querySelector("#header-humidity-element");
+  let shownHumidity = document.querySelector("#humidity-element");
   shownHumidity.innerHTML = `Humidity: ${positionHumidityData} %`;
 
-  let shownWind = document.querySelector("#header-wind-element");
+  let shownWind = document.querySelector("#wind-element");
   shownWind.innerHTML = `Wind: ${Math.round(positionWindData)} km/h`;
 
-  let shownWeatherDescription = document.querySelector(
-    "#header-weather-description"
-  );
+  let shownWeatherDescription = document.querySelector("#weather-description");
   shownWeatherDescription.innerHTML = `${positionWeatherDescription}`;
 }
 
