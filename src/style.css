@@ -69,27 +69,18 @@ img {
 
 .units {
   display: inline;
-  color: #212529;
   vertical-align: super;
   font-size: 25px;
 }
 
-.celsius-link {
-  color: #212529;
+.units a {
   text-decoration: none;
-}
-
-.fahrenheit-link:focus {
-  color: #212529;
-}
-
-.fahrenheit-link {
   color: #9b9b9b;
-  text-decoration: none;
 }
 
-.fahrenheit-link:focus {
+.units .active {
   color: #212529;
+  text-decoration: none;
 }
 
 .hum-wind-element {
