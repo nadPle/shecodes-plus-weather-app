@@ -36,10 +36,6 @@ function showEntireCurrentDate() {
 }
 
 function showCityWeatherData(response) {
-  // let cityTemperatureData = Math.round(response.data.temperature.current);
-  // let cityHumidityData = response.data.temperature.humidity;
-  // let cityWindData = response.data.wind.speed;
-  // let cityWeatherDescription = response.data.condition.description;
   let cityTemperatureData = document.querySelector("#temp-element");
   let cityHumidityData = document.querySelector("#humidity-element");
   let cityWindData = document.querySelector("#wind-element");
@@ -79,33 +75,28 @@ function searchCity(event) {
 }
 
 function showPositionWeatherData(response) {
-  let positionCityName = response.data.city;
-  let positionTemperatureData = Math.round(response.data.temperature.current);
-  let positionHumidityData = response.data.temperature.humidity;
-  let positionWindData = response.data.wind.speed;
-  let positionWeatherDescription = response.data.condition.description;
-
-  let shownCityName = document.querySelector("#city");
-  shownCityName.innerHTML = positionCityName;
-
-  let shownTemperature = document.querySelector("#temp-element");
-  shownTemperature.innerHTML = positionTemperatureData;
-
-  let shownHumidity = document.querySelector("#humidity-element");
-  shownHumidity.innerHTML = `Humidity: ${positionHumidityData} %`;
-
-  let shownWind = document.querySelector("#wind-element");
-  shownWind.innerHTML = `Wind: ${Math.round(positionWindData)} km/h`;
-
-  let shownWeatherDescription = document.querySelector("#weather-description");
-  shownWeatherDescription.innerHTML = `${positionWeatherDescription}`;
-
+  let positionCityName = document.querySelector("#city");
+  let positionTemperatureData = document.querySelector("#temp-element");
+  let positionHumidityData = document.querySelector("#humidity-element");
+  let positionWindData = document.querySelector("#wind-element");
+  let positionWeatherDescription = document.querySelector(
+    "#weather-description"
+  );
   let shownIllustration = document.querySelector("#weather-illustration");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  positionCityName.innerHTML = response.data.city;
+  positionTemperatureData.innerHTML = Math.round(celsiusTemperature);
+  positionHumidityData.innerHTML = `Humidity: ${response.data.temperature.humidity} %`;
+  positionWindData.innerHTML = `Wind: ${Math.round(
+    response.data.wind.speed
+  )} km/h`;
+  positionWeatherDescription.innerHTML = response.data.condition.description;
   shownIllustration.setAttribute(
     "src",
     `images/${response.data.condition.icon}.png`
   );
-
   shownIllustration.setAttribute("alt", response.data.condition.description);
 }
 
