@@ -55,23 +55,27 @@ function showCityWeatherData(response) {
   shownIllustration.setAttribute("alt", response.data.condition.description);
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let enteredCity = document.querySelector("#entered-city");
+function searchCity(city) {
   let apiKey = "491037f95bt62c7eo1c6b568c53adb94";
   let units = "metric";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${enteredCity.value}&key=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showCityWeatherData);
 
   let shownCity = document.querySelector("#city");
-  if (enteredCity.value) {
-    shownCity.innerHTML = `${enteredCity.value}`;
+  if (city) {
+    shownCity.innerHTML = city;
   } else {
     alert(
       `Curious about the weather of a particular city?\nPlease enter the city name in the search box.`
     );
   }
+}
+
+function handleCityInput(event) {
+  event.preventDefault();
+  let enteredCity = document.querySelector("#entered-city");
+  searchCity(enteredCity.value);
 }
 
 function showPositionWeatherData(response) {
@@ -134,7 +138,7 @@ function showCelsiusTemperature(event) {
 let celsiusTemperature = null;
 
 let enterCityForm = document.querySelector("#enter-city-form");
-enterCityForm.addEventListener("submit", searchCity);
+enterCityForm.addEventListener("submit", handleCityInput);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
@@ -146,3 +150,4 @@ let celsiusConversionLink = document.querySelector("#celsius-link");
 celsiusConversionLink.addEventListener("click", showCelsiusTemperature);
 
 showEntireCurrentDate();
+searchCity("Solothurn");
