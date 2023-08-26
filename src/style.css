@@ -74,6 +74,15 @@ img {
   font-size: 25px;
 }
 
+.celsius-link {
+  color: #212529;
+  text-decoration: none;
+}
+
+.fahrenheit-link:focus {
+  color: #212529;
+}
+
 .fahrenheit-link {
   color: #9b9b9b;
   text-decoration: none;

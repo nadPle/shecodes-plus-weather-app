@@ -116,8 +116,15 @@ function getPosition(event) {
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
-  let fahrenheitTemperature = document.querySelector("#temp-element");
-  fahrenheitTemperature.innerHTML = Math.round((24 * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("#temp-element");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp-element");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let celsiusTemperature = null;
@@ -130,5 +137,8 @@ currentLocationButton.addEventListener("click", getPosition);
 
 let fahrenheitConversionLink = document.querySelector("#fahrenheit-link");
 fahrenheitConversionLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusConversionLink = document.querySelector("#celsius-link");
+celsiusConversionLink.addEventListener("click", showCelsiusTemperature);
 
 showEntireCurrentDate();
