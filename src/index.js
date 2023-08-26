@@ -35,27 +35,23 @@ function showEntireCurrentDate() {
   entireCurrentDate.innerHTML = `${currentDay} | ${currentMonth} ${currentDate} | ${currentHours}:${currentMinutes}`;
 }
 
-showEntireCurrentDate();
-
 function showCityWeatherData(response) {
-  let cityTemperatureData = Math.round(response.data.temperature.current);
-  let cityHumidityData = response.data.temperature.humidity;
-  let cityWindData = response.data.wind.speed;
-  let cityWeatherDescription = response.data.condition.description;
-
-  let shownTemperature = document.querySelector("#temp-element");
-  shownTemperature.innerHTML = cityTemperatureData;
-
-  let shownHumidity = document.querySelector("#humidity-element");
-  shownHumidity.innerHTML = `Humidity: ${cityHumidityData} %`;
-
-  let shownWind = document.querySelector("#wind-element");
-  shownWind.innerHTML = `Wind: ${Math.round(cityWindData)} km/h`;
-
-  let shownWeatherDescription = document.querySelector("#weather-description");
-  shownWeatherDescription.innerHTML = `${cityWeatherDescription}`;
-
+  // let cityTemperatureData = Math.round(response.data.temperature.current);
+  // let cityHumidityData = response.data.temperature.humidity;
+  // let cityWindData = response.data.wind.speed;
+  // let cityWeatherDescription = response.data.condition.description;
+  let cityTemperatureData = document.querySelector("#temp-element");
+  let cityHumidityData = document.querySelector("#humidity-element");
+  let cityWindData = document.querySelector("#wind-element");
+  let cityWeatherDescription = document.querySelector("#weather-description");
   let shownIllustration = document.querySelector("#weather-illustration");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  cityTemperatureData.innerHTML = Math.round(celsiusTemperature);
+  cityHumidityData.innerHTML = `Humidity: ${response.data.temperature.humidity} %`;
+  cityWindData.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  cityWeatherDescription.innerHTML = response.data.condition.description;
   shownIllustration.setAttribute(
     "src",
     `images/${response.data.condition.icon}.png`
@@ -81,9 +77,6 @@ function searchCity(event) {
     );
   }
 }
-
-let enterCityForm = document.querySelector("#enter-city-form");
-enterCityForm.addEventListener("submit", searchCity);
 
 function showPositionWeatherData(response) {
   let positionCityName = response.data.city;
@@ -130,5 +123,21 @@ function getPosition(event) {
   navigator.geolocation.getCurrentPosition(getPositionWeatherData);
 }
 
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = document.querySelector("#temp-element");
+  fahrenheitTemperature.innerHTML = Math.round((24 * 9) / 5 + 32);
+}
+
+let celsiusTemperature = null;
+
+let enterCityForm = document.querySelector("#enter-city-form");
+enterCityForm.addEventListener("submit", searchCity);
+
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
+
+let fahrenheitConversionLink = document.querySelector("#fahrenheit-link");
+fahrenheitConversionLink.addEventListener("click", showFahrenheitTemperature);
+
+showEntireCurrentDate();
