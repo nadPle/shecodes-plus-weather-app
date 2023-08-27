@@ -98,11 +98,12 @@ img {
   margin-left: 10px;
 }
 
-.forecast {
+.weather-forecast {
   text-align: center;
   font-weight: 300;
   margin-bottom: 40px;
   font-size: 18px;
+  padding: 20px;
 }
 
 .forecast-icon {

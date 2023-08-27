@@ -35,6 +35,35 @@ function showEntireCurrentDate() {
   entireCurrentDate.innerHTML = `${currentDay} | ${currentMonth} ${currentDate} | ${currentHours}:${currentMinutes}`;
 }
 
+showEntireCurrentDate();
+
+function showForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+      <div class="forecast-day">${day}</div>
+        <div class="forecast-icon">
+          <i class="fa-solid fa-cloud-showers-heavy"></i>
+        </div>
+        <div class="forecast-temp">
+          <span class="forecast-temp-high">18°</span> |
+          <span class="forecast-temp-low">11°</span>
+        </div>
+    </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+showForecast();
+
 function showCityWeatherData(response) {
   let cityTemperatureData = document.querySelector("#temp-element");
   let cityHumidityData = document.querySelector("#humidity-element");
@@ -149,5 +178,4 @@ fahrenheitConversionLink.addEventListener("click", showFahrenheitTemperature);
 let celsiusConversionLink = document.querySelector("#celsius-link");
 celsiusConversionLink.addEventListener("click", showCelsiusTemperature);
 
-showEntireCurrentDate();
 searchCity("Solothurn");
