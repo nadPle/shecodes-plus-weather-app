@@ -37,32 +37,45 @@ function showEntireCurrentDate() {
 
 showEntireCurrentDate();
 
-function showForecast() {
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let forecastDay = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[forecastDay];
+}
+
+function showCityWeatherForecast(response) {
+  let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecastData.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
         <div class="col">
-      <div class="forecast-day">${day}</div>
+      <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
         <div class="forecast-icon">
           <i class="fa-solid fa-cloud-showers-heavy"></i>
         </div>
         <div class="forecast-temp">
-          <span class="forecast-temp-high">18°</span> |
-          <span class="forecast-temp-low">11°</span>
+          <span class="forecast-temp-high" id="forecast-temp-high">${Math.round(
+            forecastDay.temperature.maximum
+          )}°</span> |
+          <span class="forecast-temp-low" id="forecast-temp-low">${Math.round(
+            forecastDay.temperature.minimum
+          )}°</span>
         </div>
     </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-showForecast();
 
 function showCityWeatherData(response) {
   let cityTemperatureData = document.querySelector("#temp-element");
@@ -82,6 +95,14 @@ function showCityWeatherData(response) {
     `images/${response.data.condition.icon}.png`
   );
   shownIllustration.setAttribute("alt", response.data.condition.description);
+}
+
+function getEnteredCityForecast(city) {
+  let apiKey = "491037f95bt62c7eo1c6b568c53adb94";
+  let units = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(showCityWeatherForecast);
 }
 
 function searchCity(city) {
@@ -105,6 +126,39 @@ function handleCityInput(event) {
   event.preventDefault();
   let enteredCity = document.querySelector("#entered-city");
   searchCity(enteredCity.value);
+  getEnteredCityForecast(enteredCity.value);
+}
+
+function showPositionForecastData(response) {
+  let forecastData = response.data.daily;
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecastData.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col">
+      <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
+        <div class="forecast-icon">
+          <i class="fa-solid fa-cloud-showers-heavy"></i>
+        </div>
+        <div class="forecast-temp">
+          <span class="forecast-temp-high" id="forecast-temp-high">${Math.round(
+            forecastDay.temperature.maximum
+          )}°</span> |
+          <span class="forecast-temp-low" id="forecast-temp-low">${Math.round(
+            forecastDay.temperature.minimum
+          )}°</span>
+        </div>
+    </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function showPositionWeatherData(response) {
@@ -131,6 +185,21 @@ function showPositionWeatherData(response) {
     `images/${response.data.condition.icon}.png`
   );
   shownIllustration.setAttribute("alt", response.data.condition.description);
+}
+
+function getPositionForecastData(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "491037f95bt62c7eo1c6b568c53adb94";
+  let units = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
+
+  console.log(latitude, longitude);
+  axios.get(apiUrl).then(showPositionForecastData);
+}
+
+function getPositionForecast(event) {
+  navigator.geolocation.getCurrentPosition(getPositionForecastData);
 }
 
 function getPositionWeatherData(position) {
@@ -179,3 +248,4 @@ let celsiusConversionLink = document.querySelector("#celsius-link");
 celsiusConversionLink.addEventListener("click", showCelsiusTemperature);
 
 searchCity("Solothurn");
+getEnteredCityForecast("Solothurn");
