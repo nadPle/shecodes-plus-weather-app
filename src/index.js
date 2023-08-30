@@ -46,8 +46,10 @@ function formatForecastDate(timestamp) {
 }
 
 function showCityWeatherForecast(response) {
+  console.log(response);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
+  let shownWeatherIcon = document.querySelector("#weather-illustration");
 
   let forecastHTML = `<div class="row">`;
   forecastData.forEach(function (forecastDay, index) {
@@ -57,9 +59,12 @@ function showCityWeatherForecast(response) {
         `
         <div class="col">
       <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
-        <div class="forecast-icon">
-          <i class="fa-solid fa-cloud-showers-heavy"></i>
-        </div>
+        <img class ="forecast-icon"
+        src = "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecastDay.condition.icon
+        }.png"
+        alt = "${forecastDay.condition.icon}"
+          />
         <div class="forecast-temp">
           <span class="forecast-temp-high" id="forecast-temp-high">${Math.round(
             forecastDay.temperature.maximum
@@ -142,9 +147,12 @@ function showPositionForecastData(response) {
         `
         <div class="col">
       <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
-        <div class="forecast-icon">
-          <i class="fa-solid fa-cloud-showers-heavy"></i>
-        </div>
+        <img class ="forecast-icon"
+        src = "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecastDay.condition.icon
+        }.png"
+        alt = "${forecastDay.condition.icon}"
+          />
         <div class="forecast-temp">
           <span class="forecast-temp-high" id="forecast-temp-high">${Math.round(
             forecastDay.temperature.maximum
