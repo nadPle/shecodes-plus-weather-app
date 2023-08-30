@@ -130,6 +130,7 @@ function handleCityInput(event) {
 }
 
 function showPositionForecastData(response) {
+  console.log(response);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
 
@@ -194,7 +195,6 @@ function getPositionForecastData(position) {
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
 
-  console.log(latitude, longitude);
   axios.get(apiUrl).then(showPositionForecastData);
 }
 
@@ -240,6 +240,7 @@ enterCityForm.addEventListener("submit", handleCityInput);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
+currentLocationButton.addEventListener("click", getPositionForecast);
 
 let fahrenheitConversionLink = document.querySelector("#fahrenheit-link");
 fahrenheitConversionLink.addEventListener("click", showFahrenheitTemperature);
