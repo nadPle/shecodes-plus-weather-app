@@ -36,7 +36,7 @@ h3 {
 
 h4 {
   font-size: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 .weather-illustration {
   display: block;
@@ -49,91 +49,29 @@ h4 {
   margin: 30px auto;
 }
 
-.weather-app {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  box-shadow: rgba(224, 220, 151, 0.699) 0px 8px 24px;
-}
-
 .weather-app-day {
   padding-top: 5px;
   padding-bottom: 5px;
-  position: relative;
-  background: white;
   border-radius: 15px;
-}
-
-.weather-app-day:before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
   background: radial-gradient(
-    369px at 10% 20%,
-    rgba(245, 76, 76, 0.8) 0.7%,
-    rgba(243, 203, 129, 0.9) 86.1%
+    800px at 10.8% 16.6%,
+    rgb(254, 253, 112, 0.5) 1.7%,
+    rgb(0, 0, 0, 0) 91.8%
   );
-  transform: translate3d(0px, 20px, 0) scale(0.95);
-  filter: blur(35px);
-  opacity: var(0.7);
-  transition: opacity 0.3s;
-  border-radius: inherit;
-}
-
-.weather-app-day::after {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: inherit;
-  border-radius: inherit;
 }
 
 .weather-app-night {
   padding-top: 5px;
   padding-bottom: 5px;
-  position: relative;
-  background: white;
   border-radius: 15px;
-}
-
-.weather-app-night:before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    114.9deg,
-    rgb(34, 34, 34) 8.3%,
-    rgb(0, 40, 60) 41.6%,
-    rgb(0, 143, 213) 93.4%
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  background: radial-gradient(
+    800px at 10.8% 16.6%,
+    rgba(18, 67, 107, 0.5) 1.7%,
+    rgb(0, 0, 0, 0) 91.8%
   );
-  transform: translate3d(0px, 20px, 0) scale(0.95);
-  filter: blur(35px);
-  opacity: var(0.7);
-  transition: opacity 0.3s;
-  border-radius: inherit;
-}
-
-.weather-app-night::after {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: inherit;
-  border-radius: inherit;
 }
 
 .flex {
@@ -154,7 +92,7 @@ h4 {
 
 .units a {
   text-decoration: none;
-  color: #9b9b9b;
+  color: #949494;
 }
 
 .units .active {
@@ -179,14 +117,16 @@ h4 {
 
 .weather-forecast {
   text-align: center;
-  font-weight: 300;
-  margin-bottom: 50px;
+  font-weight: 400;
+  margin-bottom: 55px;
   font-size: 18px;
   padding: 0 50px;
+  line-height: 0;
 }
 
 .forecast-icon {
-  width: 80px;
+  width: 90px;
+  margin-bottom: 8px;
 }
 .forecast-temp-high {
   font-weight: bold;
@@ -194,6 +134,7 @@ h4 {
 
 .footnote {
   margin: 20px auto;
+  text-align: center;
 }
 
 .open-source-link {

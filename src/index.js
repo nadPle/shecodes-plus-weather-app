@@ -1,3 +1,19 @@
+function changeBackgroundColor() {
+  let background = document.querySelector("#weather-app-box");
+  let now = new Date();
+  let dayTime = now.getHours();
+
+  if (7 <= dayTime && dayTime >= 20) {
+    background.classList.remove("weather-app-day");
+    background.classList.add("weather-app-night");
+  } else {
+    background.classList.add("weather-app-day");
+    background.classList.remove("weather-app-night");
+  }
+}
+
+changeBackgroundColor();
+
 function showEntireCurrentDate() {
   let now = new Date();
   let entireCurrentDate = document.querySelector("#entire-current-date");
