@@ -62,7 +62,6 @@ function formatForecastDate(timestamp) {
 }
 
 function showCityWeatherForecast(response) {
-  console.log(response);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
   let shownWeatherIcon = document.querySelector("#weather-illustration");
@@ -151,7 +150,6 @@ function handleCityInput(event) {
 }
 
 function showPositionForecastData(response) {
-  console.log(response);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
 
@@ -240,23 +238,6 @@ function getPosition(event) {
   navigator.geolocation.getCurrentPosition(getPositionWeatherData);
 }
 
-function showFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temp-element");
-  celsiusConversionLink.classList.remove("active");
-  fahrenheitConversionLink.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function showCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temp-element");
-  celsiusConversionLink.classList.add("active");
-  fahrenheitConversionLink.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
 let celsiusTemperature = null;
 
 let enterCityForm = document.querySelector("#enter-city-form");
@@ -265,12 +246,6 @@ enterCityForm.addEventListener("submit", handleCityInput);
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
 currentLocationButton.addEventListener("click", getPositionForecast);
-
-let fahrenheitConversionLink = document.querySelector("#fahrenheit-link");
-fahrenheitConversionLink.addEventListener("click", showFahrenheitTemperature);
-
-let celsiusConversionLink = document.querySelector("#celsius-link");
-celsiusConversionLink.addEventListener("click", showCelsiusTemperature);
 
 searchCity("Solothurn");
 getEnteredCityForecast("Solothurn");
