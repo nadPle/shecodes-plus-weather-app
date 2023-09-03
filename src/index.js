@@ -3,7 +3,7 @@ function changeBackgroundColor() {
   let now = new Date();
   let dayTime = now.getHours();
 
-  if (7 <= dayTime && dayTime >= 20) {
+  if (dayTime <= 7 || dayTime >= 20) {
     background.classList.remove("weather-app-day");
     background.classList.add("weather-app-night");
   } else {
@@ -11,12 +11,10 @@ function changeBackgroundColor() {
     background.classList.remove("weather-app-night");
   }
 }
-
 changeBackgroundColor();
 
-function showEntireCurrentDate() {
-  let now = new Date();
-  let entireCurrentDate = document.querySelector("#entire-current-date");
+function showEntireCurrentDate(timestamp) {
+  let now = new Date(timestamp);
 
   let days = [
     "Sunday",
@@ -48,10 +46,8 @@ function showEntireCurrentDate() {
   let currentHours = String(now.getHours()).padStart(2, "0");
   let currentMinutes = String(now.getMinutes()).padStart(2, "0");
 
-  entireCurrentDate.innerHTML = `${currentDay} | ${currentMonth} ${currentDate} | ${currentHours}:${currentMinutes}`;
+  return `${currentDay} | ${currentMonth} ${currentDate} | ${currentHours}:${currentMinutes}`;
 }
-
-showEntireCurrentDate();
 
 function formatForecastDate(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -103,6 +99,7 @@ function showCityWeatherData(response) {
   let cityWindData = document.querySelector("#wind-element");
   let cityWeatherDescription = document.querySelector("#weather-description");
   let shownIllustration = document.querySelector("#weather-illustration");
+  let entireDateElement = document.querySelector("#entire-current-date");
 
   celsiusTemperature = response.data.temperature.current;
 
@@ -115,6 +112,9 @@ function showCityWeatherData(response) {
     `images/${response.data.condition.icon}.png`
   );
   shownIllustration.setAttribute("alt", response.data.condition.description);
+  entireDateElement.innerHTML = showEntireCurrentDate(
+    response.data.time * 1000
+  );
 }
 
 function getEnteredCityForecast(city) {
@@ -193,6 +193,7 @@ function showPositionWeatherData(response) {
     "#weather-description"
   );
   let shownIllustration = document.querySelector("#weather-illustration");
+  let entireDateElement = document.querySelector("#entire-current-date");
 
   celsiusTemperature = response.data.temperature.current;
 
@@ -208,6 +209,9 @@ function showPositionWeatherData(response) {
     `images/${response.data.condition.icon}.png`
   );
   shownIllustration.setAttribute("alt", response.data.condition.description);
+  entireDateElement.innerHTML = showEntireCurrentDate(
+    response.data.time * 1000
+  );
 }
 
 function getPositionForecastData(position) {
@@ -218,10 +222,6 @@ function getPositionForecastData(position) {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showPositionForecastData);
-}
-
-function getPositionForecast(event) {
-  navigator.geolocation.getCurrentPosition(getPositionForecastData);
 }
 
 function getPositionWeatherData(position) {
@@ -236,6 +236,7 @@ function getPositionWeatherData(position) {
 
 function getPosition(event) {
   navigator.geolocation.getCurrentPosition(getPositionWeatherData);
+  navigator.geolocation.getCurrentPosition(getPositionForecastData);
 }
 
 let celsiusTemperature = null;
@@ -245,7 +246,6 @@ enterCityForm.addEventListener("submit", handleCityInput);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
-currentLocationButton.addEventListener("click", getPositionForecast);
 
 searchCity("Solothurn");
 getEnteredCityForecast("Solothurn");
