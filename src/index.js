@@ -68,10 +68,10 @@ function showCityWeatherForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-        <div class="col">
+        <div class="col-sm">
       <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
         <img class ="forecast-icon"
-        src = "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+        src = "https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
           forecastDay.condition.icon
         }.png"
         alt = "${forecastDay.condition.icon}"
@@ -162,7 +162,7 @@ function showPositionForecastData(response) {
         <div class="col">
       <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
         <img class ="forecast-icon"
-        src = "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+        src = "https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
           forecastDay.condition.icon
         }.png"
         alt = "${forecastDay.condition.icon}"
