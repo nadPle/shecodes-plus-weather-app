@@ -159,7 +159,7 @@ function showPositionForecastData(response) {
       forecastHTML =
         forecastHTML +
         `
-        <div class="col">
+        <div class="col-sm">
       <div class="forecast-day">${formatForecastDate(forecastDay.time)}</div>
         <img class ="forecast-icon"
         src = "https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
